@@ -1,0 +1,8 @@
+.gradle/
+build/
+*.log
+application.yml
+.template/
+.lavasrc/
+.lavalink/
+

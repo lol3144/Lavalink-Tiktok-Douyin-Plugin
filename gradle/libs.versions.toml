@@ -1,0 +1,15 @@
+[versions]
+lavalink-api = "4.2.1"
+lavalink-server = "4.2.1"
+lavasrc = "4.8.3"
+lavaplayer = "2.2.7"
+junit = "5.10.3"
+
+[plugins]
+lavalink = { id = "dev.arbjerg.lavalink.gradle-plugin", version = "1.1.2" }
+
+[libraries]
+lavasrc = { module = "com.github.topi314.lavasrc:lavasrc", version.ref = "lavasrc" }
+lavaplayer = { module = "dev.arbjerg:lavaplayer", version.ref = "lavaplayer" }
+junit-bom = { module = "org.junit:junit-bom", version.ref = "junit" }
+junit-jupiter = { module = "org.junit.jupiter:junit-jupiter" }
