@@ -5,4 +5,4 @@ application.yml
 .template/
 .lavasrc/
 .lavalink/
-
+.run-lavalink/

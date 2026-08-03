@@ -7,7 +7,7 @@ group = "dev.prg"
 version = "0.1.0"
 
 lavalinkPlugin {
-    name = "td-plugin"
+    name = "douyin-plugin"
     apiVersion = libs.versions.lavalink.api
     serverVersion = libs.versions.lavalink.server
 }

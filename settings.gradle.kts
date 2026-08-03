@@ -1,2 +1,1 @@
-rootProject.name = "lavalink-td-plugin"
-
+rootProject.name = "lavalink-douyin-plugin"
