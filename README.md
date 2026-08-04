@@ -29,7 +29,6 @@ plugins:
     ytdlp:
       managed: true
       updateOnStartup: true
-      managedDirectory: "plugins/douyin-plugin"
       # Douyin often requires fresh cookies. Paste Netscape cookies.txt content here:
       cookies: |
         # Netscape HTTP Cookie File
@@ -84,7 +83,7 @@ plugins:
       cookiesFile: "cookies.txt"
 ```
 
-When `cookies`, `cookiesBase64`, or `cookiesEnvVar` is used, the plugin writes the cookie data to `plugins/douyin-plugin/cookies.txt` at startup and passes it to `yt-dlp`.
+When `cookies`, `cookiesBase64`, or `cookiesEnvVar` is used, the plugin writes the cookie data to its internal managed directory at startup and passes it to `yt-dlp`.
 
 ## yt-dlp Management
 
@@ -96,14 +95,21 @@ plugins:
     ytdlp:
       managed: true
       updateOnStartup: true
-      managedDirectory: "plugins/douyin-plugin"
 ```
 
 - `managed`: when `true`, the plugin downloads and uses its own `yt-dlp` binary. You do not need to install `yt-dlp` on the host.
 - `updateOnStartup`: when `true`, the plugin checks/downloads the latest official `yt-dlp` binary whenever Lavalink starts. This helps when Douyin changes and newer `yt-dlp` support is needed.
-- `managedDirectory`: directory where the plugin stores managed files, including `yt-dlp` and generated `cookies.txt`.
 
-The default `managedDirectory: "plugins/douyin-plugin"` is relative to the Lavalink working directory. For most Lavalink setups, keep the default.
+By default, managed files are stored in the JVM temp directory under `lavalink-douyin-plugin`. You normally do not need to configure a folder. On Linux, the plugin downloads the standalone `yt-dlp_linux` binary so Python is not required on the host.
+
+If your host clears temp files often and you want a persistent cache, you can set `managedDirectory` manually:
+
+```yaml
+plugins:
+  douyin:
+    ytdlp:
+      managedDirectory: "plugins/douyin-plugin"
+```
 
 To use a manually installed binary instead:
 

@@ -28,8 +28,8 @@ final class YtdlpBinaryManager {
             return properties.getPath();
         }
 
-        Path directory = Path.of(properties.getManagedDirectory()).toAbsolutePath().normalize();
-        String fileName = isWindows() ? "yt-dlp.exe" : "yt-dlp";
+        Path directory = managedDirectory(properties);
+        String fileName = binaryFileName();
         Path binary = directory.resolve(fileName);
 
         if (properties.isUpdateOnStartup() || Files.notExists(binary)) {
@@ -95,7 +95,38 @@ final class YtdlpBinaryManager {
         }
     }
 
+    static Path managedDirectory(DouyinPluginProperties.Ytdlp properties) {
+        if (hasText(properties.getManagedDirectory())) {
+            return Path.of(properties.getManagedDirectory()).toAbsolutePath().normalize();
+        }
+
+        return Path.of(System.getProperty("java.io.tmpdir"), "lavalink-douyin-plugin")
+            .toAbsolutePath()
+            .normalize();
+    }
+
     private static boolean isWindows() {
         return System.getProperty("os.name", "").toLowerCase(Locale.ROOT).contains("win");
+    }
+
+    private static String binaryFileName() {
+        if (isWindows()) {
+            return "yt-dlp.exe";
+        }
+
+        String osName = System.getProperty("os.name", "").toLowerCase(Locale.ROOT);
+        if (osName.contains("linux")) {
+            String arch = System.getProperty("os.arch", "").toLowerCase(Locale.ROOT);
+            if (arch.contains("aarch64") || arch.contains("arm64")) {
+                return "yt-dlp_linux_aarch64";
+            }
+            return "yt-dlp_linux";
+        }
+
+        return "yt-dlp";
+    }
+
+    private static boolean hasText(String value) {
+        return value != null && !value.isBlank();
     }
 }

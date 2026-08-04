@@ -31,7 +31,7 @@ final class DouyinCookieManager {
             return;
         }
 
-        Path target = Path.of(properties.getManagedDirectory()).toAbsolutePath().normalize().resolve("cookies.txt");
+        Path target = YtdlpBinaryManager.managedDirectory(properties).resolve("cookies.txt");
         try {
             Files.createDirectories(target.getParent());
             Files.writeString(target, cookieData, StandardCharsets.UTF_8);
@@ -58,4 +58,3 @@ final class DouyinCookieManager {
         return value != null && !value.isBlank();
     }
 }
-

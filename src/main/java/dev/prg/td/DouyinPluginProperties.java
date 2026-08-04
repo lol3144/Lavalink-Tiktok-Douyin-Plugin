@@ -19,7 +19,7 @@ public class DouyinPluginProperties {
         private String path = "yt-dlp";
         private boolean managed = true;
         private boolean updateOnStartup = true;
-        private String managedDirectory = "plugins/douyin-plugin";
+        private String managedDirectory;
         private int searchLimit = 10;
         private int playlistLoadLimit = 100;
         private String cookiesFile;
