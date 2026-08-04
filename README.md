@@ -21,7 +21,7 @@ The plugin jar is generated in `build/libs/`.
 ```yaml
 lavalink:
   plugins:
-    - dependency: "dev.prg:lavalink-douyin-plugin:0.1.0"
+    - dependency: "dev.prg:lavalink-douyin-plugin:0.1.1"
       repository: "https://jitpack.io"
 
 plugins:
