@@ -4,7 +4,7 @@ plugins {
 }
 
 group = "dev.prg"
-version = "0.1.1"
+version = "0.1.2"
 
 lavalinkPlugin {
     name = "douyin-plugin"

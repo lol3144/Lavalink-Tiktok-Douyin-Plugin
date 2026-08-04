@@ -59,7 +59,7 @@ public class DouyinAudioSourceManager extends YtdlpAudioSourceManager {
         } catch (RuntimeException e) {
             if (e.getMessage() != null && e.getMessage().contains("Fresh cookies")) {
                 throw new FriendlyException(
-                    "Douyin requires fresh cookies. Configure plugins.douyin.ytdlp.cookies or cookiesFile.",
+                    "Douyin requires fresh guest verification cookies. Login is not required; paste incognito/browser-exported Netscape cookies into plugins.douyin.ytdlp.cookies or set cookiesFile.",
                     FriendlyException.Severity.COMMON,
                     e
                 );

@@ -21,7 +21,7 @@ The plugin jar is generated in `build/libs/`.
 ```yaml
 lavalink:
   plugins:
-    - dependency: "dev.prg:lavalink-douyin-plugin:0.1.1"
+    - dependency: "dev.prg:lavalink-douyin-plugin:0.1.2"
       repository: "https://jitpack.io"
 
 plugins:
@@ -29,7 +29,8 @@ plugins:
     ytdlp:
       managed: true
       updateOnStartup: true
-      # Douyin often requires fresh cookies. Paste Netscape cookies.txt content here:
+      # Douyin often requires fresh guest verification cookies. Login is not required.
+      # Paste browser/incognito-exported Netscape cookies.txt content here:
       cookies: |
         # Netscape HTTP Cookie File
         # https://curl.haxx.se/rfc/cookie_spec.html
@@ -55,7 +56,9 @@ For best long-term support, keep `yt-dlp` updated:
 
 ## Cookie Setup
 
-Douyin commonly requires fresh cookies. The plugin supports these cookie inputs:
+Douyin commonly requires fresh guest verification cookies. A Douyin account login is not required, but Douyin's browser challenge often creates short-lived guest cookies even in incognito/private mode. Server-hosted Lavalink cannot run that browser challenge by itself, so export the fresh Netscape `cookies.txt` from a browser session where the target video opens and provide it to the plugin.
+
+The plugin supports these cookie inputs:
 
 - `cookies`: paste the full Netscape `cookies.txt` content into `application.yml`
 - `cookiesFile`: path to a Netscape `cookies.txt` file
@@ -73,6 +76,12 @@ plugins:
         # https://curl.haxx.se/rfc/cookie_spec.html
         .douyin.com	TRUE	/	TRUE	0	example_cookie	example_value
 ```
+
+Guest-cookie flow:
+
+1. Open the Douyin video in a normal or incognito/private browser window.
+2. Export cookies for `douyin.com` in Netscape `cookies.txt` format.
+3. Paste the full file into `plugins.douyin.ytdlp.cookies`, or point `cookiesFile` at that file.
 
 File-based setup:
 
